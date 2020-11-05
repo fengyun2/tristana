@@ -15,6 +15,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 module.exports = {
     stats: {
@@ -195,7 +196,8 @@ module.exports = {
             toType: 'dir'
         }]),
         HotModuleReplacementPlugin: new webpack.HotModuleReplacementPlugin(),
-        ReactRefreshWebpackPlugin: new ReactRefreshWebpackPlugin()
+        ReactRefreshWebpackPlugin: new ReactRefreshWebpackPlugin(),
+        HardSourceWebpackPlugin: new HardSourceWebpackPlugin()
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
