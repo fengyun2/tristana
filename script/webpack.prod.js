@@ -27,7 +27,7 @@ const config = {
         webpackBase.plugins.progressBarPlugin,
         webpackBase.plugins.ContextReplacementPlugin,
         webpackBase.plugins.DefinePlugin,
-        webpackBase.plugins.AntdDayjsWebpackPlugin,
+        // webpackBase.plugins.AntdDayjsWebpackPlugin,
         webpackBase.plugins.CopyPlugin
     ]
     // externals: webpackBase.externals

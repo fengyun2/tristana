@@ -14,16 +14,21 @@ function Dashboard() {
         dashboardStore.getTable();
     }, []);
 
-    // const RouteWithSubRoutes = route => <PrivateRoute path={route.path} component={route.component} routes={route.routes} />;
+    // const RouteWithSubRoutes = route => (
+    //     <PrivateRoute path={route.path} component={route.component} routes={route.routes} />
+    // );
 
-    // const routeConfig = this.props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />);
+    // const routeConfig = this.props.routes.map((route, i) => (
+    //     <RouteWithSubRoutes key={i} {...route} />
+    // ));
     return (
         <section className="dashboard">
-            <OrderTable list={dashboardStore.list} isLoading={dashboardStore.isLoading.get('getTable')} />
-            {/* <Button onClick={() => this.props.history.push('/dashboard/bus')}>二级路由</Button> */}
-            {/* <Switch>
-                {routeConfig}
-            </Switch> */}
+            <OrderTable
+                list={dashboardStore.list}
+                isLoading={dashboardStore.isLoading.get('getTable')}
+            />
+            {/* <Button onClick={() => this.props.history.push('/dashboard/bus')}>二级路由</Button>
+            <Switch>{routeConfig}</Switch> */}
         </section>
     );
 }
@@ -60,12 +65,5 @@ const columns = [
 
 // 订单表格
 function OrderTable({ list, isLoading }) {
-    return (
-        <Table
-            columns={columns}
-            dataSource={list || []}
-            loading={isLoading}
-            rowKey="orderId"
-        />
-    );
+    return <Table columns={columns} dataSource={list || []} loading={isLoading} rowKey="orderId" />;
 }

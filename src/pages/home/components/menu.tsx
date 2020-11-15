@@ -3,18 +3,19 @@
  * @Date: 2019-07-18 10:33:21
  */
 import React, { Component } from 'react';
-import { HomeOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import HomeOutlined from '@ant-design/icons/HomeOutlined';
+import ShoppingCartOutlined from '@ant-design/icons/ShoppingCartOutlined';
 import { withRouter } from 'react-router-dom';
 import { Menu } from 'antd';
 
 interface IProps {
-    location: any,
-    history: any
+    location: any;
+    history: any;
 }
 
 interface IState {
-    selectedKeys: any,
-    pathname: string
+    selectedKeys: any;
+    pathname: string;
 }
 
 class Index extends Component<IProps, IState> {
@@ -28,7 +29,9 @@ class Index extends Component<IProps, IState> {
     }
 
     componentDidMount() {
-        const { location: { pathname } } = this.props;
+        const {
+            location: { pathname }
+        } = this.props;
         this.setState({
             selectedKeys: [pathname],
             pathname
@@ -60,20 +63,14 @@ class Index extends Component<IProps, IState> {
             >
                 <Menu.Item key="/dashboard">
                     <HomeOutlined />
-                    <span>
-                        工作台
-                    </span>
+                    <span>工作台</span>
                 </Menu.Item>
                 <Menu.Item key="/add/goods">
                     <ShoppingCartOutlined />
-                    <span>
-                        添加商品
-                    </span>
+                    <span>添加商品</span>
                 </Menu.Item>
                 <Menu.Item key="/user/error">
-                    <span>
-                        404
-                    </span>
+                    <span>404</span>
                 </Menu.Item>
             </Menu>
         );

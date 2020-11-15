@@ -11,7 +11,6 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 module.exports = {
@@ -63,22 +62,26 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'awesome-typescript-loader',
                 options: {
-                    getCustomTransformers: () => ({
-                        before: [
-                            tsImportPluginFactory([
-                                {
-                                    libraryName: 'antd',
-                                    libraryDirectory: 'lib',
-                                    style: 'css'
-                                }
-                            ])
-                        ]
-                    })
+                    useCache: true,
+                    forceIsolatedModules: true
                 }
+                // options: {
+                //     getCustomTransformers: () => ({
+                //         before: [
+                //             tsImportPluginFactory([
+                //                 {
+                //                     libraryName: 'antd',
+                //                     libraryDirectory: 'lib',
+                //                     style: 'css'
+                //                 }
+                //             ])
+                //         ]
+                //     })
+                // }
             },
             {
                 enforce: 'pre',
-                test: /\.(ts|tsx|js|jsx)$/,
+                test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
                 loader: 'eslint-loader',
                 options: {
@@ -87,18 +90,11 @@ module.exports = {
                     failOnError: true
                 }
             },
-            {
-                test: /\.(js|jsx)$/,
-                // loader: 'babel-loader',
-                exclude: /node_modules/,
-                loader: require.resolve('babel-loader'),
-                options: {
-                    plugins: [
-                        process.env.ENV_LWD == 'development' &&
-                            require.resolve('react-refresh/babel')
-                    ].filter(Boolean)
-                }
-            },
+            // {
+            //     test: /\.(js|jsx)$/,
+            //     exclude: /node_modules/,
+            //     loader: 'babel-loader'
+            // },
             {
                 test: /\.(css|less)$/,
                 use: [
@@ -196,7 +192,6 @@ module.exports = {
             }
         ]),
         HotModuleReplacementPlugin: new webpack.HotModuleReplacementPlugin(),
-        ReactRefreshWebpackPlugin: new ReactRefreshWebpackPlugin(),
         HardSourceWebpackPlugin: new HardSourceWebpackPlugin()
     },
     devServer: {
@@ -212,6 +207,10 @@ module.exports = {
     externals: {
         react: 'React',
         'react-dom': 'ReactDOM',
-        'socket.io-client': 'io'
+        'trtc-js-sdk': 'TRTC',
+        antd: 'antd',
+        mockjs: 'Mock'
+        // mobx: 'mobx',
+        // 'mobx-react': 'mobxReact'
     }
 };

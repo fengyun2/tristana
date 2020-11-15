@@ -3,18 +3,19 @@
  * @Author: Jiang
  * @Date: 2019-06-13 16:45:59
  * @Last Modified by: Jiang
- * @Last Modified time: 2020-09-12 10:17:13
+ * @Last Modified time: 2020-11-15 12:20:14
  */
 
 import React, { Component } from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import UserOutlined from '@ant-design/icons/UserOutlined';
+import LockOutlined from '@ant-design/icons/LockOutlined';
 import './login.less';
 
 interface IProps {
     history: {
         push(url: string): void;
-    }
+    };
 }
 
 class Login extends Component<IProps> {
@@ -29,25 +30,20 @@ class Login extends Component<IProps> {
         console.log('Success:', values);
         localStorage.token = 'login';
         history.push('/dashboard');
-    }
+    };
 
     render() {
         return (
             <main className="login">
-                <Form
-                    onFinish={this.handleSubmit}
-                    className="login-form"
-                >
+                <Form onFinish={this.handleSubmit} className="login-form">
                     <Form.Item
                         name="loginName"
-                        rules={
-                            [
-                                {
-                                    required: true,
-                                    message: '请输入账号'
-                                }
-                            ]
-                        }
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入账号'
+                            }
+                        ]}
                     >
                         <Input
                             prefix={<UserOutlined className="site-form-item-icon" />}
@@ -58,14 +54,12 @@ class Login extends Component<IProps> {
                     </Form.Item>
                     <Form.Item
                         name="password"
-                        rules={
-                            [
-                                {
-                                    required: true,
-                                    message: '请输入密码'
-                                }
-                            ]
-                        }
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入密码'
+                            }
+                        ]}
                     >
                         <Input
                             prefix={<LockOutlined className="site-form-item-icon" />}
@@ -75,9 +69,7 @@ class Login extends Component<IProps> {
                             placeholder="请输入密码"
                         />
                     </Form.Item>
-                    <Form.Item
-                        name="remember"
-                    >
+                    <Form.Item name="remember">
                         <article className="login-form-remember">
                             <Checkbox>Remember me</Checkbox>
                             <a className="login-form-forgot" href="">
@@ -86,7 +78,11 @@ class Login extends Component<IProps> {
                         </article>
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" className="login-form-button login-btn">
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            className="login-form-button login-btn"
+                        >
                             Log in
                         </Button>
                     </Form.Item>

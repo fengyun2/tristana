@@ -1,6 +1,8 @@
 const webpackBase = require('./webpack.base.conf');
+const SpeedMeasureWebpackPlugin = require('speed-measure-webpack-plugin');
+const smp = new SpeedMeasureWebpackPlugin();
 
-module.exports = {
+module.exports = smp.wrap({
     // 配置源码显示方式
     devtool: 'eval-source-map',
     mode: 'development',
@@ -17,12 +19,12 @@ module.exports = {
         webpackBase.plugins.optimizeCssAssets,
         webpackBase.plugins.ContextReplacementPlugin,
         webpackBase.plugins.DefinePlugin,
-        webpackBase.plugins.AntdDayjsWebpackPlugin,
-        webpackBase.plugins.ReactRefreshWebpackPlugin,
-        webpackBase.plugins.HardSourceWebpackPlugin
+        // webpackBase.plugins.AntdDayjsWebpackPlugin,
+        // webpackBase.plugins.HardSourceWebpackPlugin,
+        webpackBase.plugins.bundleAnalyzer
         // webpackBase.plugins.HotModuleReplacementPlugin
     ],
     devServer: webpackBase.devServer,
-    watchOptions: webpackBase.watchOptions
-    // externals: webpackBase.externals
-};
+    watchOptions: webpackBase.watchOptions,
+    externals: webpackBase.externals
+});
