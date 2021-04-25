@@ -52,7 +52,7 @@ $ git checkout class
 
 $ npm install
 
-$ npm run dev
+$ npm run start
 ```
 
 ## 部署
